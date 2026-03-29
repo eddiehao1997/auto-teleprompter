@@ -17,6 +17,18 @@ Tips for using the teleprompter:
 
 Good luck with your presentation!`
 
+interface ScriptEditorProps {
+  script: string
+  onScriptChange: (script: string) => void
+  fontSize: number
+  onFontSizeChange: (size: number) => void
+  speed: number
+  onSpeedChange: (speed: number) => void
+  mirrorMode: boolean
+  onMirrorModeChange: (mirror: boolean) => void
+  onStart: () => void
+}
+
 function ScriptEditor({
   script,
   onScriptChange,
@@ -27,8 +39,8 @@ function ScriptEditor({
   mirrorMode,
   onMirrorModeChange,
   onStart,
-}) {
-  const textareaRef = useRef(null)
+}: ScriptEditorProps) {
+  const textareaRef = useRef<HTMLTextAreaElement>(null)
 
   const handleLoadSample = () => {
     onScriptChange(SAMPLE_SCRIPT)

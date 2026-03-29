@@ -1,15 +1,23 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import './Teleprompter.css'
 
-function Teleprompter({ script, fontSize, speed, mirrorMode, onBack }) {
+interface TeleprompterProps {
+  script: string
+  fontSize: number
+  speed: number
+  mirrorMode: boolean
+  onBack: () => void
+}
+
+function Teleprompter({ script, fontSize, speed, mirrorMode, onBack }: TeleprompterProps) {
   const [isPlaying, setIsPlaying] = useState(false)
   const [currentSpeed, setCurrentSpeed] = useState(speed)
   const [countdown, setCountdown] = useState(3)
   const [showControls, setShowControls] = useState(true)
-  const scrollRef = useRef(null)
-  const animationRef = useRef(null)
-  const lastTimeRef = useRef(null)
-  const controlsTimerRef = useRef(null)
+  const scrollRef = useRef<HTMLDivElement>(null)
+  const animationRef = useRef<number | null>(null)
+  const lastTimeRef = useRef<number | null>(null)
+  const controlsTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   // Pixels per second: speed slider (5-100) maps to 20-200 px/s
   const pixelsPerSecond = 20 + (currentSpeed / 100) * 180
@@ -27,7 +35,7 @@ function Teleprompter({ script, fontSize, speed, mirrorMode, onBack }) {
 
   // Auto-scroll animation loop
   const scrollStep = useCallback(
-    (timestamp) => {
+    (timestamp: number) => {
       if (!lastTimeRef.current) {
         lastTimeRef.current = timestamp
       }
@@ -69,7 +77,9 @@ function Teleprompter({ script, fontSize, speed, mirrorMode, onBack }) {
   // Auto-hide controls after 3s of no interaction
   const resetControlsTimer = useCallback(() => {
     setShowControls(true)
-    clearTimeout(controlsTimerRef.current)
+    if (controlsTimerRef.current) {
+      clearTimeout(controlsTimerRef.current)
+    }
     controlsTimerRef.current = setTimeout(() => {
       if (isPlaying) {
         setShowControls(false)
@@ -82,9 +92,15 @@ function Teleprompter({ script, fontSize, speed, mirrorMode, onBack }) {
       resetControlsTimer()
     } else {
       setShowControls(true)
-      clearTimeout(controlsTimerRef.current)
+      if (controlsTimerRef.current) {
+        clearTimeout(controlsTimerRef.current)
+      }
     }
-    return () => clearTimeout(controlsTimerRef.current)
+    return () => {
+      if (controlsTimerRef.current) {
+        clearTimeout(controlsTimerRef.current)
+      }
+    }
   }, [isPlaying, resetControlsTimer])
 
   const handleScreenTap = () => {
@@ -92,19 +108,19 @@ function Teleprompter({ script, fontSize, speed, mirrorMode, onBack }) {
     resetControlsTimer()
   }
 
-  const togglePlay = (e) => {
+  const togglePlay = (e: React.MouseEvent) => {
     e.stopPropagation()
     setIsPlaying(!isPlaying)
     resetControlsTimer()
   }
 
-  const handleSpeedChange = (e) => {
+  const handleSpeedChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.stopPropagation()
     setCurrentSpeed(Number(e.target.value))
     resetControlsTimer()
   }
 
-  const handleRestart = (e) => {
+  const handleRestart = (e: React.MouseEvent) => {
     e.stopPropagation()
     if (scrollRef.current) {
       scrollRef.current.scrollTop = 0
@@ -113,7 +129,7 @@ function Teleprompter({ script, fontSize, speed, mirrorMode, onBack }) {
     resetControlsTimer()
   }
 
-  const handleBack = (e) => {
+  const handleBack = (e: React.MouseEvent) => {
     e.stopPropagation()
     onBack()
   }
