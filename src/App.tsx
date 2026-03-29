@@ -1,32 +1,48 @@
-import { useState } from 'react'
 import ScriptEditor from './components/ScriptEditor'
 import Teleprompter from './components/Teleprompter'
+import { ScriptProvider, useScript, scriptTextFromSections } from './contexts/ScriptContext'
+import { SessionProvider, useSession } from './contexts/SessionContext'
 import './App.css'
 
-function App() {
-  const [script, setScript] = useState('')
-  const [isPrompting, setIsPrompting] = useState(false)
-  const [fontSize, setFontSize] = useState(32)
-  const [speed, setSpeed] = useState(50)
-  const [mirrorMode, setMirrorMode] = useState(false)
+function AppContent() {
+  const { state: scriptState, dispatch: scriptDispatch } = useScript()
+  const { state: session, dispatch: sessionDispatch } = useSession()
+
+  const scriptText = scriptTextFromSections(scriptState.script.sections)
+
+  const handleScriptChange = (text: string) => {
+    scriptDispatch({ type: 'SET_SCRIPT_TEXT', payload: text })
+  }
 
   const handleStart = () => {
-    if (script.trim()) {
-      setIsPrompting(true)
+    if (scriptText.trim()) {
+      sessionDispatch({ type: 'SET_IS_PROMPTING', payload: true })
     }
   }
 
   const handleBack = () => {
-    setIsPrompting(false)
+    sessionDispatch({ type: 'SET_IS_PROMPTING', payload: false })
   }
 
-  if (isPrompting) {
+  const handleFontSizeChange = (size: number) => {
+    sessionDispatch({ type: 'SET_FONT_SIZE', payload: size })
+  }
+
+  const handleSpeedChange = (speed: number) => {
+    sessionDispatch({ type: 'SET_SPEED', payload: speed })
+  }
+
+  const handleMirrorModeChange = (mirror: boolean) => {
+    sessionDispatch({ type: 'SET_MIRROR_MODE', payload: mirror })
+  }
+
+  if (session.isPrompting) {
     return (
       <Teleprompter
-        script={script}
-        fontSize={fontSize}
-        speed={speed}
-        mirrorMode={mirrorMode}
+        script={scriptText}
+        fontSize={session.fontSize}
+        speed={session.speed}
+        mirrorMode={session.mirrorMode}
         onBack={handleBack}
       />
     )
@@ -34,16 +50,26 @@ function App() {
 
   return (
     <ScriptEditor
-      script={script}
-      onScriptChange={setScript}
-      fontSize={fontSize}
-      onFontSizeChange={setFontSize}
-      speed={speed}
-      onSpeedChange={setSpeed}
-      mirrorMode={mirrorMode}
-      onMirrorModeChange={setMirrorMode}
+      script={scriptText}
+      onScriptChange={handleScriptChange}
+      fontSize={session.fontSize}
+      onFontSizeChange={handleFontSizeChange}
+      speed={session.speed}
+      onSpeedChange={handleSpeedChange}
+      mirrorMode={session.mirrorMode}
+      onMirrorModeChange={handleMirrorModeChange}
       onStart={handleStart}
     />
+  )
+}
+
+function App() {
+  return (
+    <SessionProvider>
+      <ScriptProvider>
+        <AppContent />
+      </ScriptProvider>
+    </SessionProvider>
   )
 }
 
