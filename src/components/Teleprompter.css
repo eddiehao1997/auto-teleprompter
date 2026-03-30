@@ -243,3 +243,89 @@
     opacity: 1;
   }
 }
+
+/* Mode toggle button */
+.mode-toggle-btn {
+  background: rgba(255, 255, 255, 0.15);
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+.mode-toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.mode-btn-active {
+  background: rgba(233, 69, 96, 0.4);
+  box-shadow: 0 0 8px rgba(233, 69, 96, 0.5);
+}
+
+.mode-btn-active:hover {
+  background: rgba(233, 69, 96, 0.55);
+}
+
+/* Controls top right grouping */
+.controls-top-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Mic indicator dot */
+.mic-indicator {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-left: 4px;
+  vertical-align: middle;
+}
+
+.mic-listening {
+  background: #4caf50;
+  box-shadow: 0 0 6px rgba(76, 175, 80, 0.7);
+  animation: mic-pulse 1.5s ease-in-out infinite;
+}
+
+.mic-error {
+  background: #f44336;
+  box-shadow: 0 0 6px rgba(244, 67, 54, 0.7);
+}
+
+.mic-off {
+  background: #888;
+}
+
+@keyframes mic-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+/* Voice status in controls bottom */
+.voice-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  min-height: 32px;
+}
+
+.voice-status-text {
+  color: #ccc;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.voice-status-error {
+  color: #f44336;
+}
+
+/* Speed display voice mode */
+.speed-display-voice {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}

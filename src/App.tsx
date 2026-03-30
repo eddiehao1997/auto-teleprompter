@@ -43,6 +43,7 @@ function AppContent() {
         fontSize={session.fontSize}
         speed={session.speed}
         mirrorMode={session.mirrorMode}
+        scrollMode={session.scrollMode}
         onBack={handleBack}
       />
     )
