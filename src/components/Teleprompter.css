@@ -157,7 +157,7 @@
 }
 
 .speed-label {
-  color: #888;
+  color: var(--color-text-muted, #888);
   font-size: 13px;
   font-weight: 600;
   min-width: 45px;
@@ -222,7 +222,7 @@
   justify-content: center;
   width: 100%;
   height: 100%;
-  background: #000;
+  background: var(--color-bg, #000);
 }
 
 .countdown-number {
@@ -292,7 +292,7 @@
 }
 
 .mic-off {
-  background: #888;
+  background: var(--color-text-muted, #888);
 }
 
 @keyframes mic-pulse {
@@ -314,7 +314,7 @@
 }
 
 .voice-status-text {
-  color: #ccc;
+  color: var(--color-text-secondary, #ccc);
   font-size: 13px;
   font-weight: 600;
 }

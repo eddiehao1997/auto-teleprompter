@@ -40,6 +40,8 @@ function AppContent() {
     return (
       <Teleprompter
         script={scriptText}
+        sections={scriptState.script.sections}
+        speakers={scriptState.script.speakers}
         fontSize={session.fontSize}
         speed={session.speed}
         mirrorMode={session.mirrorMode}
