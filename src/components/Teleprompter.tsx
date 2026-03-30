@@ -1,10 +1,14 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { useScrollEngine } from '../hooks/useScrollEngine'
 import { useVoiceScroll } from '../hooks/useVoiceScroll'
+import ScriptRenderer from './ScriptRenderer'
+import type { ScriptSection, Speaker } from '../types'
 import './Teleprompter.css'
 
 interface TeleprompterProps {
   script: string
+  sections?: ScriptSection[]
+  speakers?: Speaker[]
   fontSize: number
   speed: number
   mirrorMode: boolean
@@ -12,7 +16,7 @@ interface TeleprompterProps {
   onBack: () => void
 }
 
-function Teleprompter({ script, fontSize, speed, mirrorMode, scrollMode = 'constant', onBack }: TeleprompterProps) {
+function Teleprompter({ script, sections, speakers, fontSize, speed, mirrorMode, scrollMode = 'constant', onBack }: TeleprompterProps) {
   const [isPlaying, setIsPlaying] = useState(false)
   const [currentSpeed, setCurrentSpeed] = useState(speed)
   const [currentMode, setCurrentMode] = useState<'constant' | 'voice'>(scrollMode)
@@ -149,12 +153,21 @@ function Teleprompter({ script, fontSize, speed, mirrorMode, scrollMode = 'const
         }}
       >
         <div className="script-spacer" />
-        <div
-          className="script-text"
-          style={{ fontSize: `${fontSize}px`, lineHeight: 1.6 }}
-        >
-          {script}
-        </div>
+        {sections && speakers && speakers.length > 0 ? (
+          <ScriptRenderer
+            sections={sections}
+            speakers={speakers}
+            fontSize={fontSize}
+            scrollContainerRef={scrollRef}
+          />
+        ) : (
+          <div
+            className="script-text"
+            style={{ fontSize: `${fontSize}px`, lineHeight: 1.6 }}
+          >
+            {script}
+          </div>
+        )}
         <div className="script-spacer" />
       </div>
 
