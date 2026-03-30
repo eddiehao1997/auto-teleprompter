@@ -1,6 +1,6 @@
 {
-  "lastUpdated": "2026-03-29T14:48:00Z",
-  "currentPhase": "phase-1a",
+  "lastUpdated": "2026-03-30T09:05:00Z",
+  "currentPhase": "phase-2a",
   "phases": {
     "phase-0": {
       "name": "Foundation + TypeScript Migration",
@@ -25,25 +25,25 @@
     },
     "phase-1a": {
       "name": "Voice Recognition Foundation",
-      "status": "not_started",
+      "status": "completed",
       "agents": ["Voice", "Testing"],
       "tasks": [
-        { "id": "p1a-1", "description": "Build useSpeechRecognition hook", "status": "pending", "files": ["src/hooks/useSpeechRecognition.ts"] },
-        { "id": "p1a-2", "description": "Build voiceMatch text-matching algorithm", "status": "pending", "files": ["src/utils/voiceMatch.ts"] },
-        { "id": "p1a-3", "description": "Write unit tests for voiceMatch", "status": "pending", "files": ["src/__tests__/voiceMatch.test.ts"] },
-        { "id": "p1a-4", "description": "Build debug overlay for speech recognition", "status": "pending", "files": ["src/components/SpeechDebugOverlay.tsx"] }
+        { "id": "p1a-1", "description": "Build useSpeechRecognition hook", "status": "completed", "files": ["src/hooks/useSpeechRecognition.ts"] },
+        { "id": "p1a-2", "description": "Build voiceMatch text-matching algorithm", "status": "completed", "files": ["src/utils/voiceMatch.ts"] },
+        { "id": "p1a-3", "description": "Write unit tests for voiceMatch", "status": "completed", "files": ["src/__tests__/voiceMatch.test.ts"] },
+        { "id": "p1a-4", "description": "Build debug overlay for speech recognition", "status": "completed", "files": ["src/components/SpeechDebugOverlay.tsx"] }
       ]
     },
     "phase-1b": {
       "name": "Voice-Driven Scroll Integration",
-      "status": "not_started",
+      "status": "completed",
       "agents": ["Voice", "Display"],
       "tasks": [
-        { "id": "p1b-1", "description": "Build useVoiceScroll hook", "status": "pending", "files": ["src/hooks/useVoiceScroll.ts"] },
-        { "id": "p1b-2", "description": "Build useScrollEngine hook", "status": "pending", "files": ["src/hooks/useScrollEngine.ts"] },
-        { "id": "p1b-3", "description": "Refactor Teleprompter.tsx to use useScrollEngine", "status": "pending", "files": ["src/components/Teleprompter.tsx"] },
-        { "id": "p1b-4", "description": "Add voice/constant mode toggle in controls", "status": "pending", "files": ["src/components/Teleprompter.tsx"] },
-        { "id": "p1b-5", "description": "Add microphone status indicator", "status": "pending", "files": ["src/components/Teleprompter.tsx"] },
+        { "id": "p1b-1", "description": "Build useVoiceScroll hook", "status": "completed", "files": ["src/hooks/useVoiceScroll.ts"] },
+        { "id": "p1b-2", "description": "Build useScrollEngine hook", "status": "completed", "files": ["src/hooks/useScrollEngine.ts"] },
+        { "id": "p1b-3", "description": "Refactor Teleprompter.tsx to use useScrollEngine", "status": "completed", "files": ["src/components/Teleprompter.tsx"] },
+        { "id": "p1b-4", "description": "Add voice/constant mode toggle in controls", "status": "completed", "files": ["src/components/Teleprompter.tsx"] },
+        { "id": "p1b-5", "description": "Add microphone status indicator", "status": "completed", "files": ["src/components/Teleprompter.tsx"] },
         { "id": "p1b-6", "description": "Add current-word highlighting in voice mode", "status": "pending", "files": ["src/components/Teleprompter.tsx", "src/components/Teleprompter.css"] }
       ]
     },
