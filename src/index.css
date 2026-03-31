@@ -1,3 +1,60 @@
+:root {
+  --color-bg-primary: #000000;
+  --color-bg-secondary: #1a1a1a;
+  --color-bg-tertiary: #333333;
+  --color-accent: #e94560;
+  --color-accent-hover: #d63d56;
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #aaaaaa;
+  --color-text-muted: #888888;
+  --color-border: #666666;
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 50px;
+  --touch-target-min: 44px;
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+
+  /* Colors */
+  --color-primary: #e94560;
+  --color-bg: #000000;
+  --color-bg-editor: #000000;
+  --color-surface: #1a1a1a;
+  --color-text: #ffffff;
+  --color-text-secondary-alt: #888888;
+  --color-border-subtle: #333333;
+
+  /* Speaker palette */
+  --speaker-1: #e94560;
+  --speaker-2: #00d4aa;
+  --speaker-3: #ffd700;
+  --speaker-4: #7b68ee;
+  --speaker-5: #ff6b35;
+  --speaker-6: #00bfff;
+  --speaker-7: #ff69b4;
+  --speaker-8: #98fb98;
+
+  /* Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+
+  /* Touch targets */
+  --touch-min: 44px;
+
+  /* Breakpoints (for reference, used in media queries) */
+  /* Phone: < 768px */
+  /* Tablet: 768px - 1024px */
+  /* Desktop: > 1024px */
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -17,4 +74,5 @@ body {
   -webkit-font-smoothing: antialiased;
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
 }

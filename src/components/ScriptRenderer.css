@@ -1,0 +1,30 @@
+.script-renderer {
+  padding: 0 24px;
+}
+
+.script-section {
+  margin-bottom: 0.5em;
+  transition: opacity 0.3s ease;
+}
+
+.script-section.dimmed {
+  opacity: 0.6;
+}
+
+.section-speaker-label {
+  font-size: 0.4em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.5;
+  margin-bottom: 0.15em;
+  text-align: center;
+}
+
+.section-content {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  text-align: center;
+  font-weight: 500;
+  line-height: 1.6;
+}

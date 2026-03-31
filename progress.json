@@ -1,0 +1,91 @@
+{
+  "lastUpdated": "2026-03-30T09:05:00Z",
+  "currentPhase": "phase-2a",
+  "phases": {
+    "phase-0": {
+      "name": "Foundation + TypeScript Migration",
+      "status": "completed",
+      "agents": ["Architect", "TS Migration", "Testing"],
+      "tasks": [
+        { "id": "p0-1", "description": "Add TypeScript to project (tsconfig.json, vite config)", "status": "completed", "files": ["tsconfig.json", "vite.config.ts"] },
+        { "id": "p0-2", "description": "Convert main.jsx to main.tsx", "status": "completed", "files": ["src/main.tsx"] },
+        { "id": "p0-3", "description": "Convert App.jsx to App.tsx", "status": "completed", "files": ["src/App.tsx"] },
+        { "id": "p0-4", "description": "Convert ScriptEditor.jsx to ScriptEditor.tsx", "status": "completed", "files": ["src/components/ScriptEditor.tsx"] },
+        { "id": "p0-5", "description": "Convert Teleprompter.jsx to Teleprompter.tsx", "status": "completed", "files": ["src/components/Teleprompter.tsx"] },
+        { "id": "p0-6", "description": "Create shared types in src/types/index.ts", "status": "completed", "files": ["src/types/index.ts"] },
+        { "id": "p0-7", "description": "Create ScriptContext with typed reducer", "status": "completed", "files": ["src/contexts/ScriptContext.tsx"] },
+        { "id": "p0-8", "description": "Create SessionContext with typed reducer", "status": "completed", "files": ["src/contexts/SessionContext.tsx"] },
+        { "id": "p0-9", "description": "Create folder structure (hooks, utils, contexts, types, constants)", "status": "completed", "files": ["src/hooks/", "src/utils/", "src/contexts/", "src/types/", "src/constants/"] },
+        { "id": "p0-10", "description": "Refactor App.tsx to use context providers", "status": "completed", "files": ["src/App.tsx"] },
+        { "id": "p0-11", "description": "Build string to structured script migration utility", "status": "completed", "files": ["src/utils/scriptMigration.ts"] },
+        { "id": "p0-12", "description": "Set up Vitest and React Testing Library", "status": "completed", "files": ["vitest.config.ts", "src/test/setup.ts"] },
+        { "id": "p0-13", "description": "Add CSS custom properties to index.css", "status": "completed", "files": ["src/index.css"] },
+        { "id": "p0-14", "description": "Create verification script", "status": "completed", "files": ["scripts/verify.sh"] }
+      ]
+    },
+    "phase-1a": {
+      "name": "Voice Recognition Foundation",
+      "status": "completed",
+      "agents": ["Voice", "Testing"],
+      "tasks": [
+        { "id": "p1a-1", "description": "Build useSpeechRecognition hook", "status": "completed", "files": ["src/hooks/useSpeechRecognition.ts"] },
+        { "id": "p1a-2", "description": "Build voiceMatch text-matching algorithm", "status": "completed", "files": ["src/utils/voiceMatch.ts"] },
+        { "id": "p1a-3", "description": "Write unit tests for voiceMatch", "status": "completed", "files": ["src/__tests__/voiceMatch.test.ts"] },
+        { "id": "p1a-4", "description": "Build debug overlay for speech recognition", "status": "completed", "files": ["src/components/SpeechDebugOverlay.tsx"] }
+      ]
+    },
+    "phase-1b": {
+      "name": "Voice-Driven Scroll Integration",
+      "status": "completed",
+      "agents": ["Voice", "Display"],
+      "tasks": [
+        { "id": "p1b-1", "description": "Build useVoiceScroll hook", "status": "completed", "files": ["src/hooks/useVoiceScroll.ts"] },
+        { "id": "p1b-2", "description": "Build useScrollEngine hook", "status": "completed", "files": ["src/hooks/useScrollEngine.ts"] },
+        { "id": "p1b-3", "description": "Refactor Teleprompter.tsx to use useScrollEngine", "status": "completed", "files": ["src/components/Teleprompter.tsx"] },
+        { "id": "p1b-4", "description": "Add voice/constant mode toggle in controls", "status": "completed", "files": ["src/components/Teleprompter.tsx"] },
+        { "id": "p1b-5", "description": "Add microphone status indicator", "status": "completed", "files": ["src/components/Teleprompter.tsx"] },
+        { "id": "p1b-6", "description": "Add current-word highlighting in voice mode", "status": "pending", "files": ["src/components/Teleprompter.tsx", "src/components/Teleprompter.css"] }
+      ]
+    },
+    "phase-2a": {
+      "name": "Script Management + Multi-Speaker",
+      "status": "not_started",
+      "agents": ["Script Management", "UX"],
+      "tasks": [
+        { "id": "p2a-1", "description": "Build useSpeakers hook", "status": "pending", "files": ["src/hooks/useSpeakers.ts"] },
+        { "id": "p2a-2", "description": "Build SpeakerManager component", "status": "pending", "files": ["src/components/SpeakerManager.tsx"] },
+        { "id": "p2a-3", "description": "Refactor ScriptEditor.tsx to structured section editor", "status": "pending", "files": ["src/components/ScriptEditor.tsx"] },
+        { "id": "p2a-4", "description": "Build useScriptStorage hook for localStorage", "status": "pending", "files": ["src/hooks/useScriptStorage.ts"] },
+        { "id": "p2a-5", "description": "Build ScriptRenderer component", "status": "pending", "files": ["src/components/ScriptRenderer.tsx"] },
+        { "id": "p2a-6", "description": "Integrate multi-speaker display into Teleprompter", "status": "pending", "files": ["src/components/Teleprompter.tsx"] },
+        { "id": "p2a-7", "description": "Add current speaker indicator", "status": "pending", "files": ["src/components/Teleprompter.tsx"] }
+      ]
+    },
+    "phase-2b": {
+      "name": "Responsive Design",
+      "status": "not_started",
+      "agents": ["UX/Responsive"],
+      "tasks": [
+        { "id": "p2b-1", "description": "Extract colors to CSS custom properties", "status": "pending", "files": ["src/index.css"] },
+        { "id": "p2b-2", "description": "Add tablet breakpoints to ScriptEditor.css", "status": "pending", "files": ["src/components/ScriptEditor.css"] },
+        { "id": "p2b-3", "description": "Add tablet breakpoints to Teleprompter.css", "status": "pending", "files": ["src/components/Teleprompter.css"] },
+        { "id": "p2b-4", "description": "Fix touch targets to 44x44px minimum", "status": "pending", "files": ["src/components/Teleprompter.css", "src/components/ScriptEditor.css"] },
+        { "id": "p2b-5", "description": "Add safe area insets for notched phones", "status": "pending", "files": ["src/index.css"] },
+        { "id": "p2b-6", "description": "Define 8-color speaker palette", "status": "pending", "files": ["src/index.css", "src/constants/colors.ts"] },
+        { "id": "p2b-7", "description": "Test and fix landscape orientation", "status": "pending", "files": ["src/components/ScriptEditor.css", "src/components/Teleprompter.css"] }
+      ]
+    },
+    "phase-3": {
+      "name": "Polish and Integration",
+      "status": "not_started",
+      "agents": ["Testing", "UX", "All"],
+      "tasks": [
+        { "id": "p3-1", "description": "Cross-browser testing", "status": "pending", "files": [] },
+        { "id": "p3-2", "description": "Performance profiling (60fps with voice)", "status": "pending", "files": [] },
+        { "id": "p3-3", "description": "Error state UX (mic denied, API unavailable)", "status": "pending", "files": ["src/components/Teleprompter.tsx"] },
+        { "id": "p3-4", "description": "Onboarding/help overlay", "status": "pending", "files": ["src/components/OnboardingOverlay.tsx"] },
+        { "id": "p3-5", "description": "PWA setup (manifest, service worker)", "status": "pending", "files": ["public/manifest.json", "public/sw.js"] }
+      ]
+    }
+  }
+}

@@ -1,0 +1,73 @@
+.speech-debug-overlay {
+  position: fixed;
+  top: 8px;
+  right: 8px;
+  z-index: 9999;
+  font-family: monospace;
+  font-size: 12px;
+}
+
+.speech-debug-toggle {
+  display: block;
+  margin-left: auto;
+  padding: 4px 10px;
+  background: #1a1a2e;
+  color: #e0e0e0;
+  border: 1px solid #444;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: monospace;
+  font-size: 11px;
+}
+
+.speech-debug-toggle:hover {
+  background: #2a2a4e;
+}
+
+.speech-debug-panel {
+  margin-top: 4px;
+  padding: 10px 12px;
+  background: rgba(16, 16, 32, 0.95);
+  color: #e0e0e0;
+  border: 1px solid #444;
+  border-radius: 6px;
+  min-width: 240px;
+  max-width: 320px;
+}
+
+.speech-debug-title {
+  margin: 0 0 8px 0;
+  font-size: 13px;
+  color: #aaa;
+  border-bottom: 1px solid #333;
+  padding-bottom: 4px;
+}
+
+.speech-debug-row {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+
+.speech-debug-label {
+  color: #888;
+  flex-shrink: 0;
+}
+
+.speech-debug-value {
+  color: #ccc;
+  word-break: break-word;
+}
+
+.status-ok {
+  color: #4caf50;
+}
+
+.status-off {
+  color: #888;
+}
+
+.status-err {
+  color: #f44336;
+}

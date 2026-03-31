@@ -21,7 +21,7 @@
 }
 
 .subtitle {
-  color: #888;
+  color: var(--color-text-secondary-alt, #888);
   font-size: 14px;
 }
 
@@ -43,10 +43,10 @@
 .script-textarea {
   width: 100%;
   height: 100%;
-  background: #1a1a1a;
-  border: 1px solid #333;
+  background: var(--color-surface, #1a1a1a);
+  border: 1px solid var(--color-border-subtle, #333);
   border-radius: 12px;
-  color: #fff;
+  color: var(--color-text, #fff);
   font-size: 16px;
   line-height: 1.6;
   padding: 16px;
@@ -57,7 +57,7 @@
 }
 
 .script-textarea:focus {
-  border-color: #e94560;
+  border-color: var(--color-primary, #e94560);
 }
 
 .script-textarea::placeholder {
@@ -68,10 +68,12 @@
   position: absolute;
   bottom: 12px;
   right: 12px;
-  background: #333;
+  background: var(--color-border-subtle, #333);
   border: none;
   color: #aaa;
-  padding: 6px 12px;
+  padding: 8px 14px;
+  min-height: var(--touch-min, 44px);
+  min-width: var(--touch-min, 44px);
   border-radius: 6px;
   font-size: 12px;
   cursor: pointer;
@@ -91,7 +93,7 @@
 }
 
 .setting-group {
-  background: #1a1a1a;
+  background: var(--color-surface, #1a1a1a);
   border-radius: 12px;
   padding: 16px;
 }
@@ -107,7 +109,7 @@
 }
 
 .setting-value {
-  color: #e94560;
+  color: var(--color-primary, #e94560);
   font-weight: 700;
 }
 
@@ -116,7 +118,7 @@
   height: 6px;
   -webkit-appearance: none;
   appearance: none;
-  background: #333;
+  background: var(--color-border-subtle, #333);
   border-radius: 3px;
   outline: none;
 }
@@ -127,7 +129,7 @@
   width: 22px;
   height: 22px;
   border-radius: 50%;
-  background: #e94560;
+  background: var(--color-primary, #e94560);
   cursor: pointer;
   border: 2px solid #fff;
 }
@@ -136,7 +138,7 @@
   width: 22px;
   height: 22px;
   border-radius: 50%;
-  background: #e94560;
+  background: var(--color-primary, #e94560);
   cursor: pointer;
   border: 2px solid #fff;
 }
@@ -163,7 +165,7 @@
   position: relative;
   width: 50px;
   height: 28px;
-  background: #333;
+  background: var(--color-border-subtle, #333);
   border: none;
   border-radius: 14px;
   cursor: pointer;
@@ -172,7 +174,7 @@
 }
 
 .toggle-btn.active {
-  background: #e94560;
+  background: var(--color-primary, #e94560);
 }
 
 .toggle-knob {
@@ -193,7 +195,7 @@
 .start-btn {
   width: 100%;
   padding: 16px;
-  background: #e94560;
+  background: var(--color-primary, #e94560);
   border: none;
   border-radius: 12px;
   color: #fff;
@@ -216,4 +218,69 @@
 .start-btn:disabled {
   opacity: 0.3;
   cursor: not-allowed;
+}
+
+/* Tablet breakpoint */
+@media (min-width: 768px) {
+  .editor-container {
+    max-width: 800px;
+    padding: var(--space-lg, 24px) var(--space-xl, 32px);
+  }
+
+  .editor-header h1 {
+    font-size: 32px;
+  }
+
+  .settings {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-md, 16px);
+  }
+
+  .textarea-wrapper {
+    min-height: 200px;
+  }
+
+  .script-textarea {
+    font-size: 17px;
+    padding: var(--space-lg, 24px);
+  }
+
+  .start-btn {
+    padding: 18px;
+    font-size: 20px;
+    min-height: var(--touch-min, 44px);
+  }
+}
+
+/* Desktop breakpoint */
+@media (min-width: 1024px) {
+  .editor-container {
+    max-width: 900px;
+    padding: var(--space-xl, 32px) 48px;
+  }
+
+  .editor-header {
+    padding: var(--space-lg, 24px) 0;
+  }
+
+  .editor-header h1 {
+    font-size: 36px;
+  }
+
+  .editor-content {
+    gap: var(--space-lg, 24px);
+  }
+
+  .textarea-wrapper {
+    min-height: 250px;
+  }
+
+  .script-textarea {
+    font-size: 18px;
+  }
+
+  .setting-group {
+    padding: var(--space-lg, 24px);
+  }
 }

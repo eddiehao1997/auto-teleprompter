@@ -1,0 +1,117 @@
+.speaker-manager {
+  background: #1a1a1a;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.speaker-manager-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.speaker-manager-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #ccc;
+}
+
+.add-speaker-btn {
+  background: #333;
+  border: none;
+  color: #aaa;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.add-speaker-btn:hover {
+  background: #444;
+  color: #fff;
+}
+
+.speaker-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.speaker-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  background: #222;
+  border-radius: 8px;
+}
+
+.speaker-color-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.speaker-name-display {
+  flex: 1;
+  font-size: 13px;
+  color: #ddd;
+  cursor: pointer;
+  padding: 2px 4px;
+  border-radius: 4px;
+  transition: background 0.2s;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.speaker-name-display:hover {
+  background: #333;
+}
+
+.speaker-name-input {
+  flex: 1;
+  font-size: 13px;
+  color: #fff;
+  background: #333;
+  border: 1px solid #555;
+  border-radius: 4px;
+  padding: 2px 4px;
+  outline: none;
+  font-family: inherit;
+  min-width: 0;
+}
+
+.speaker-name-input:focus {
+  border-color: #e94560;
+}
+
+.speaker-delete-btn {
+  background: none;
+  border: none;
+  color: #666;
+  cursor: pointer;
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: color 0.2s, background 0.2s;
+  flex-shrink: 0;
+}
+
+.speaker-delete-btn:hover {
+  color: #e94560;
+  background: rgba(233, 69, 96, 0.15);
+}
+
+.speaker-empty {
+  color: #555;
+  font-size: 12px;
+  text-align: center;
+  padding: 8px 0;
+}
