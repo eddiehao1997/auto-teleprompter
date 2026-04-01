@@ -1,5 +1,6 @@
 import ScriptEditor from './components/ScriptEditor'
 import Teleprompter from './components/Teleprompter'
+import OnboardingOverlay from './components/OnboardingOverlay'
 import { ScriptProvider, useScript, scriptTextFromSections } from './contexts/ScriptContext'
 import { SessionProvider, useSession } from './contexts/SessionContext'
 import './App.css'
@@ -36,33 +37,34 @@ function AppContent() {
     sessionDispatch({ type: 'SET_MIRROR_MODE', payload: mirror })
   }
 
-  if (session.isPrompting) {
-    return (
-      <Teleprompter
-        script={scriptText}
-        sections={scriptState.script.sections}
-        speakers={scriptState.script.speakers}
-        fontSize={session.fontSize}
-        speed={session.speed}
-        mirrorMode={session.mirrorMode}
-        scrollMode={session.scrollMode}
-        onBack={handleBack}
-      />
-    )
-  }
-
   return (
-    <ScriptEditor
-      script={scriptText}
-      onScriptChange={handleScriptChange}
-      fontSize={session.fontSize}
-      onFontSizeChange={handleFontSizeChange}
-      speed={session.speed}
-      onSpeedChange={handleSpeedChange}
-      mirrorMode={session.mirrorMode}
-      onMirrorModeChange={handleMirrorModeChange}
-      onStart={handleStart}
-    />
+    <>
+      <OnboardingOverlay />
+      {session.isPrompting ? (
+        <Teleprompter
+          script={scriptText}
+          sections={scriptState.script.sections}
+          speakers={scriptState.script.speakers}
+          fontSize={session.fontSize}
+          speed={session.speed}
+          mirrorMode={session.mirrorMode}
+          scrollMode={session.scrollMode}
+          onBack={handleBack}
+        />
+      ) : (
+        <ScriptEditor
+          script={scriptText}
+          onScriptChange={handleScriptChange}
+          fontSize={session.fontSize}
+          onFontSizeChange={handleFontSizeChange}
+          speed={session.speed}
+          onSpeedChange={handleSpeedChange}
+          mirrorMode={session.mirrorMode}
+          onMirrorModeChange={handleMirrorModeChange}
+          onStart={handleStart}
+        />
+      )}
+    </>
   )
 }
 
