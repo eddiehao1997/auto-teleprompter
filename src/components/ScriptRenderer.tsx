@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, useCallback } from 'react'
+import { useEffect, useRef, useState, useCallback, useMemo } from 'react'
 import type { ScriptSection, Speaker } from '../types'
 import './ScriptRenderer.css'
 
@@ -7,15 +7,27 @@ interface ScriptRendererProps {
   speakers: Speaker[]
   fontSize: number
   scrollContainerRef: React.RefObject<HTMLDivElement | null>
+  activeWordIndex?: number
 }
 
-function ScriptRenderer({ sections, speakers, fontSize, scrollContainerRef }: ScriptRendererProps) {
+function ScriptRenderer({ sections, speakers, fontSize, scrollContainerRef, activeWordIndex }: ScriptRendererProps) {
   const [activeSectionIndex, setActiveSectionIndex] = useState(0)
   const sectionRefs = useRef<(HTMLDivElement | null)[]>([])
 
   const speakerMap = new Map(speakers.map((s) => [s.id, s]))
 
   const sorted = sections.slice().sort((a, b) => a.order - b.order)
+
+  // Compute word boundaries per section for active word highlighting
+  const sectionWordBounds = useMemo(() => {
+    let runningCount = 0
+    return sorted.map((section) => {
+      const words = section.content.split(/\s+/).filter((w) => w.length > 0)
+      const start = runningCount
+      runningCount += words.length
+      return { start, end: runningCount, words }
+    })
+  }, [sorted])
 
   // Track which section is near the guide line (center of viewport)
   const updateActiveSection = useCallback(() => {
@@ -86,7 +98,26 @@ function ScriptRenderer({ sections, speakers, fontSize, scrollContainerRef }: Sc
               </div>
             )}
             <div className="section-content" style={{ color }}>
-              {section.content}
+              {(() => {
+                const bounds = sectionWordBounds[idx]
+                if (activeWordIndex !== undefined && bounds &&
+                    activeWordIndex >= bounds.start && activeWordIndex < bounds.end) {
+                  return bounds.words.map((word, wi) => {
+                    const globalIdx = bounds.start + wi
+                    return (
+                      <span key={wi}>
+                        {wi > 0 ? ' ' : ''}
+                        {globalIdx === activeWordIndex ? (
+                          <span className="word-active">{word}</span>
+                        ) : (
+                          word
+                        )}
+                      </span>
+                    )
+                  })
+                }
+                return section.content
+              })()}
             </div>
           </div>
         )

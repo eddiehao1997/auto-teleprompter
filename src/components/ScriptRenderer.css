@@ -28,3 +28,9 @@
   font-weight: 500;
   line-height: 1.6;
 }
+
+.word-active {
+  background: rgba(233, 69, 96, 0.3);
+  border-radius: 3px;
+  padding: 0 2px;
+}
