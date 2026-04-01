@@ -118,6 +118,24 @@ function Teleprompter({ script, sections, speakers, fontSize, speed, mirrorMode,
     resetControlsTimer()
   }
 
+  // Error banner state
+  const [showErrorBanner, setShowErrorBanner] = useState(false)
+  const [errorBannerMessage, setErrorBannerMessage] = useState('')
+
+  useEffect(() => {
+    if (currentMode !== 'voice') return
+
+    if (voiceScroll.error && voiceScroll.error.includes('not-allowed')) {
+      setErrorBannerMessage('Microphone access denied. Switched to manual scroll.')
+      setShowErrorBanner(true)
+      setCurrentMode('constant')
+    } else if (!voiceScroll.isSupported) {
+      setErrorBannerMessage('Voice mode not supported in this browser.')
+      setShowErrorBanner(true)
+      setCurrentMode('constant')
+    }
+  }, [voiceScroll.error, voiceScroll.isSupported, currentMode])
+
   // Mic indicator color
   const getMicIndicatorClass = () => {
     if (currentMode !== 'voice') return 'mic-indicator mic-off'
@@ -159,17 +177,50 @@ function Teleprompter({ script, sections, speakers, fontSize, speed, mirrorMode,
             speakers={speakers}
             fontSize={fontSize}
             scrollContainerRef={scrollRef}
+            activeWordIndex={currentMode === 'voice' ? voiceScroll.wordIndex : undefined}
           />
         ) : (
           <div
             className="script-text"
             style={{ fontSize: `${fontSize}px`, lineHeight: 1.6 }}
           >
-            {script}
+            {currentMode === 'voice' ? (
+              script.split(/(\s+)/).reduce<{ elements: React.ReactNode[]; wordCount: number }>(
+                (acc, token, i) => {
+                  if (/^\s+$/.test(token) || token === '') {
+                    acc.elements.push(token)
+                  } else {
+                    const idx = acc.wordCount
+                    acc.wordCount++
+                    acc.elements.push(
+                      idx === voiceScroll.wordIndex ? (
+                        <span key={i} className="word-active">{token}</span>
+                      ) : (
+                        token
+                      )
+                    )
+                  }
+                  return acc
+                },
+                { elements: [], wordCount: 0 }
+              ).elements
+            ) : (
+              script
+            )}
           </div>
         )}
         <div className="script-spacer" />
       </div>
+
+      {/* Error banner */}
+      {showErrorBanner && (
+        <div className="error-banner">
+          <span className="error-banner-message">{errorBannerMessage}</span>
+          <button className="error-banner-dismiss" onClick={(e) => { e.stopPropagation(); setShowErrorBanner(false) }}>
+            Dismiss
+          </button>
+        </div>
+      )}
 
       {/* Controls overlay */}
       <div className={`controls-overlay ${showControls ? 'visible' : ''}`}>
